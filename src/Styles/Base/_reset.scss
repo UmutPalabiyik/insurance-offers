@@ -1,0 +1,16 @@
+body,* {
+    padding: 0;
+    margin: 0;
+    border: 0;
+    outline: none;
+    box-sizing: border-box;
+}
+
+ol, ul{
+    list-style-type: none;
+}
+
+a, button{
+    text-decoration: none;
+    cursor: pointer;
+}
