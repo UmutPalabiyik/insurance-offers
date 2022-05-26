@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   apiOneInsuranceOffers,
+  apiTwoInsuranceOffers,
   apiOneStatus,
   apiTwoStatus,
   fetchApiOneInsuranceOffers,
@@ -16,6 +17,7 @@ const InsuranceOffersList = () => {
   const apiOneStatusValue = useSelector(apiOneStatus);
   const apiTwoStatusValue = useSelector(apiTwoStatus);
   const apiOneData = useSelector(apiOneInsuranceOffers);
+  const apiTwoData = useSelector(apiTwoInsuranceOffers);
 
   // fetch insurance offers for case 1 and case 2
   useEffect(() => {
@@ -30,12 +32,15 @@ const InsuranceOffersList = () => {
 
   return (
     <div className="offers">
-      <div className="offers__api-one">
-      {apiOneData.map((offerData, key) => {
-        return <InsuranceOfferCard  offerData={offerData} key={key} />
-      })}
+      <div className="offers__list">
+        {apiOneData.map((offerData, key) => {
+          return <InsuranceOfferCard offerData={offerData} key={key} />;
+        })}
       </div>
-      <div className="offers__api-two">
+      <div className="offers__list">
+        {apiTwoData.map((offerData, key) => {
+          return <InsuranceOfferCard offerData={offerData} key={key} />;
+        })}
       </div>
     </div>
   );

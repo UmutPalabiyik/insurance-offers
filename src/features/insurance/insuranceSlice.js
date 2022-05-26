@@ -58,3 +58,4 @@ export default insuranceSlice.reducer;
 export const apiOneStatus = state => state.insurance.apiOneStatus;
 export const apiTwoStatus = state => state.insurance.apiTwoStatus;
 export const apiOneInsuranceOffers = state => state.insurance.apiOneInsuranceOffers;
+export const apiTwoInsuranceOffers = state => state.insurance.apiTwoInsuranceOffers;

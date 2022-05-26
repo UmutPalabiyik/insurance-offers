@@ -2,7 +2,7 @@
   background-color: #ffff;
   padding: 1rem 0.75rem;
   border-radius: 0.5rem;
-  height: 120px;
+  height: 125px;
 
   &__container {
     display: flex;
@@ -16,13 +16,15 @@
     align-items: center;
   }
 
-  &__company-name{
-      font-size: 14px;
-      font-weight: 500;
+  &__company-name {
+    font-size: 14px;
+    font-weight: 500;
   }
   &__image {
-    height: 30px;
     width: 125px;
+    img {
+      height: 45px;
+    }
   }
 
   &__description {
@@ -31,6 +33,7 @@
 
   &__purchase-info {
     display: flex;
+    align-items: center;
     justify-content: space-between;
   }
 
