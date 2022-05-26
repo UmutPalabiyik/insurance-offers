@@ -57,3 +57,4 @@ export default insuranceSlice.reducer;
 // export status
 export const caseOneInsuranceStatus = state => state.insurance.caseOneInsuranceStatus;
 export const caseTwoInsuranceStatus = state => state.insurance.caseTwoInsuranceStatus;
+export const caseOneInsuranceData = state => state.insurance.caseOneInsuranceData;
