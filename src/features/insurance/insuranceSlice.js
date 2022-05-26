@@ -2,24 +2,24 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "../../axios";
 
 
-export const fetchInsuranceDataCaseOne = createAsyncThunk("insuranceCaseOne/fetch", async (arg) => {
-    const response = await axios.get(arg);
+export const fetchApiOneInsuranceOffers = createAsyncThunk("apiOneInsuranceOffers/fetch", async (arg) => {
+  const response = await axios.get(arg);
     return response.data.offerList;
   });
 
-  export const fetchInsuranceDataCaseTwo = createAsyncThunk("insuranceCaseTwo/fetch", async (arg) => {
+  export const fetchApiTwoInsuranceOffers = createAsyncThunk("apiTwoInsuranceOffers/fetch", async (arg) => {
     const response = await axios.get(arg);
     return response.data.offerList;
   });
 
 
 const initialState = {
-  caseOneInsuranceData: [],
-  caseTwoInsuranceData: [],
-  caseOneInsuranceStatus: "idle",
-  caseTwoInsuranceStatus: "idle",
-  caseOneInsuranceError: null,
-  caseTwoInsuranceError: null,
+  apiOneInsuranceOffers: [],
+  apiTwoInsuranceOffers: [],
+  apiOneStatus: "idle",
+  apiTwoStatus: "idle",
+  apiOneError: null,
+  apiTwoError: null,
 
 };
 
@@ -27,27 +27,27 @@ const insuranceSlice = createSlice({
   name: "insurance",
   initialState,
   extraReducers: {
-    [fetchInsuranceDataCaseOne.pending]: (state) => {
-      state.caseOneInsuranceStatus = "loading";
+    [fetchApiOneInsuranceOffers.pending]: (state) => {
+      state.apiOneStatus = "loading";
     },
-    [fetchInsuranceDataCaseOne.fulfilled]: (state, action) => {
-      state.caseOneInsuranceStatus = "succeeded";
-      state.caseOneInsuranceData = action.payload;
+    [fetchApiOneInsuranceOffers.fulfilled]: (state, action) => {
+      state.apiOneStatus = "succeeded";
+      state.apiOneInsuranceOffers = action.payload;
     },
-    [fetchInsuranceDataCaseOne.error]: (state, action) => {
-      state.caseOneInsuranceStatus = "failed";
-      state.caseOneInsuranceError = action.payload;
+    [fetchApiOneInsuranceOffers.error]: (state, action) => {
+      state.apiOneStatus = "failed";
+      state.apiOneError = action.payload;
     },
-    [fetchInsuranceDataCaseTwo.pending]: (state) => {
-        state.caseTwoInsuranceStatus = "loading";
+    [fetchApiTwoInsuranceOffers.pending]: (state) => {
+        state.apiTwoStatus = "loading";
       },
-    [fetchInsuranceDataCaseTwo.fulfilled]: (state, action) => {
-        state.caseTwoInsuranceStatus = "succeeded";
-        state.caseTwoInsuranceData = action.payload;
+    [fetchApiTwoInsuranceOffers.fulfilled]: (state, action) => {
+        state.apiTwoStatus = "succeeded";
+        state.apiTwoInsuranceOffers = action.payload;
       },
-    [fetchInsuranceDataCaseTwo.error]: (state, action) => {
-        state.caseTwoInsuranceStatus = "failed";
-        state.caseTwoInsuranceError = action.payload;
+    [fetchApiTwoInsuranceOffers.error]: (state, action) => {
+        state.apiTwoStatus = "failed";
+        state.apiTwoError = action.payload;
       },
   },
 });
@@ -55,6 +55,6 @@ const insuranceSlice = createSlice({
 export default insuranceSlice.reducer;
 
 // export status
-export const caseOneInsuranceStatus = state => state.insurance.caseOneInsuranceStatus;
-export const caseTwoInsuranceStatus = state => state.insurance.caseTwoInsuranceStatus;
-export const caseOneInsuranceData = state => state.insurance.caseOneInsuranceData;
+export const apiOneStatus = state => state.insurance.apiOneStatus;
+export const apiTwoStatus = state => state.insurance.apiTwoStatus;
+export const apiOneInsuranceOffers = state => state.insurance.apiOneInsuranceOffers;

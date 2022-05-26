@@ -1,0 +1,58 @@
+.offer-card {
+  background-color: #ffff;
+  padding: 1rem 0.75rem;
+  border-radius: 0.5rem;
+  height: 120px;
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+  }
+
+  &__company-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__company-name{
+      font-size: 14px;
+      font-weight: 500;
+  }
+  &__image {
+    height: 30px;
+    width: 125px;
+  }
+
+  &__description {
+    font-weight: 700;
+  }
+
+  &__purchase-info {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__discounted-price {
+    text-decoration: line-through;
+  }
+
+  &__discounted-price-container {
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    column-gap: 0.25rem;
+  }
+
+  &__price {
+    font-weight: 700;
+  }
+
+  &__buying-btn {
+    color: #ffff;
+    background-color: #0087cf;
+    padding: 0.5rem 1.5rem;
+    border-radius: 3px;
+  }
+}

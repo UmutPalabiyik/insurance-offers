@@ -1,11 +1,11 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  caseOneInsuranceData,
-  caseOneInsuranceStatus,
-  caseTwoInsuranceStatus,
-  fetchInsuranceDataCaseOne,
-  fetchInsuranceDataCaseTwo
+  apiOneInsuranceOffers,
+  apiOneStatus,
+  apiTwoStatus,
+  fetchApiOneInsuranceOffers,
+  fetchApiTwoInsuranceOffers,
 } from "../features/insurance/insuranceSlice";
 
 // component imports
@@ -13,34 +13,32 @@ import InsuranceOfferCard from "./InsuranceOfferCard";
 
 const InsuranceOffersList = () => {
   const dispatch = useDispatch();
-  const caseOneStatus = useSelector(caseOneInsuranceStatus);
-  const caseTwoStatus = useSelector(caseTwoInsuranceStatus);
-  const caseOneData = useSelector(caseOneInsuranceData);
+  const apiOneStatusValue = useSelector(apiOneStatus);
+  const apiTwoStatusValue = useSelector(apiTwoStatus);
+  const apiOneData = useSelector(apiOneInsuranceOffers);
 
   // fetch insurance offers for case 1 and case 2
   useEffect(() => {
-    if (caseOneStatus === "idle") {
-      dispatch(fetchInsuranceDataCaseOne("/case1"));
+    if (apiOneStatusValue === "idle") {
+      dispatch(fetchApiOneInsuranceOffers("/case1"));
     }
 
-    if (caseTwoStatus === "idle") {
-        dispatch(fetchInsuranceDataCaseTwo("/case2"));
-      }
-
-  }, [dispatch, caseOneStatus, caseTwoStatus]);
-
-  return <div className="insurance-offers">
-    {
-      caseOneData.map((insurence, key) => {
-        return(
-          <div key={key}>
-            {insurence.FirmName}
-          </div>
-      
-        )
-      })
+    if (apiTwoStatusValue === "idle") {
+      dispatch(fetchApiTwoInsuranceOffers("/case2"));
     }
-  </div>;
+  }, [dispatch, apiOneStatusValue, apiTwoStatusValue]);
+
+  return (
+    <div className="offers">
+      <div className="offers__api-one">
+      {apiOneData.map((offerData, key) => {
+        return <InsuranceOfferCard  offerData={offerData} key={key} />
+      })}
+      </div>
+      <div className="offers__api-two">
+      </div>
+    </div>
+  );
 };
 
 export default InsuranceOffersList;
