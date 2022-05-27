@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import BasicSpinner from "./BasicSpinner";
 import {
   apiOneInsuranceOffers,
   apiTwoInsuranceOffers,
@@ -32,16 +33,25 @@ const InsuranceOffersList = () => {
 
   return (
     <div className="offers">
-      <div className="offers__list">
-        {apiOneData.map((offerData, key) => {
-          return <InsuranceOfferCard offerData={offerData} key={key} />;
-        })}
-      </div>
-      <div className="offers__list">
-        {apiTwoData.map((offerData, key) => {
-          return <InsuranceOfferCard offerData={offerData} key={key} />;
-        })}
-      </div>
+      {apiOneStatusValue === "loading" ? (
+        <BasicSpinner />
+      ) : (
+        <div className="offers__list">
+          {apiOneData.map((offerData, key) => {
+            return <InsuranceOfferCard offerData={offerData} key={key} />;
+          })}
+        </div>
+      )}
+
+      {apiTwoStatusValue === "loading" ? (
+        <BasicSpinner />
+      ) : (
+        <div className="offers__list">
+          {apiTwoData.map((offerData, key) => {
+            return <InsuranceOfferCard offerData={offerData} key={key} />;
+          })}
+        </div>
+      )}
     </div>
   );
 };

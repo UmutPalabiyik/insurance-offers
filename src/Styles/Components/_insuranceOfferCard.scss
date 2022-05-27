@@ -58,4 +58,19 @@
     padding: 0.5rem 1.5rem;
     border-radius: 3px;
   }
+
+  &__popover{
+      font-size: 10px;
+      text-align: center;
+      line-height: 13px;
+      display: inline-block;
+      color: #5b88ad;
+      width: 14px;
+      height: 14px;
+      border: 1px solid #5b88ad;
+      border-radius: 50%;
+      margin-left: .25rem;
+      cursor: pointer;
+
+  }
 }

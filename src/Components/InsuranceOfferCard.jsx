@@ -6,18 +6,22 @@ const InsuranceOfferCard = ({ offerData }) => {
     ProductDesc,
     QuotaInfo,
     SaleClosed,
-    PopoverContent,
+    popoverContent,
   } = offerData;
+  
   return (
     <div className="offer-card">
       <div className="offer-card__container">
         <div className="offer-card__company-info">
           <div className="offer-card__image">
-            <img src={ImagePath} alt="" />
+            <img src={ImagePath} alt={FirmName} />
           </div>
           <div className="offer-card__product-info">
             <div className="offer-card__description">{ProductDesc}</div>
-            <div className="offer-card__company-name">{FirmName}</div>
+            <div className="offer-card__company-name">
+                {FirmName}
+                {popoverContent && <span className="offer-card__popover">?</span>}
+                </div>
           </div>
         </div>
 
