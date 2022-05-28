@@ -12,8 +12,15 @@ export const fetchApiOneInsuranceOffers = createAsyncThunk("apiOneInsuranceOffer
     return response.data.offerList;
   });
 
+  export const fetchIndividualOffersCount = createAsyncThunk("individualOffersCount/fetch", async (arg) => {
+    const response = await axios.get(arg);
+    return response.data.num_offers
+  });
 
 const initialState = {
+  individualOffersCount: 0,
+  individualOffersCountStatus: "idle",
+  individualOffersCountError: null, 
   apiOneInsuranceOffers: [],
   apiTwoInsuranceOffers: [],
   apiOneStatus: "idle",
@@ -49,13 +56,25 @@ const insuranceSlice = createSlice({
         state.apiTwoStatus = "failed";
         state.apiTwoError = action.payload;
       },
+    [fetchIndividualOffersCount.pending]: (state) => {
+        state.individualOffersCountStatus = "loading";
+      },
+    [fetchIndividualOffersCount.fulfilled]: (state, action) => {
+        state.individualOffersCountStatus = "succeeded";
+        state.individualOffersCount = action.payload;
+      },
+    [fetchIndividualOffersCount.error]: (state, action) => {
+        state.individualOffersCountStatus = "failed";
+        state.individualOffersCountError = action.payload;
+      },
   },
 });
 
 export default insuranceSlice.reducer;
-
-// export status
 export const apiOneStatus = state => state.insurance.apiOneStatus;
 export const apiTwoStatus = state => state.insurance.apiTwoStatus;
 export const apiOneInsuranceOffers = state => state.insurance.apiOneInsuranceOffers;
 export const apiTwoInsuranceOffers = state => state.insurance.apiTwoInsuranceOffers;
+export const invidiualOffersCountStatus = state => state.insurance.individualOffersCountStatus;
+export const individualOffersCount = state => state.insurance.individualOffersCount;
+export const individualOffersCountStatus = state => state.insurance.individualOffersCountStatus;

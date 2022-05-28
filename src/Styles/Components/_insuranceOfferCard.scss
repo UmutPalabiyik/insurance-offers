@@ -64,6 +64,11 @@
     background-color: #0087cf;
     padding: 0.5rem 1.5rem;
     border-radius: 3px;
+    transition: all .25s ease-in-out;
+
+    &:hover{
+      background-color: rgb(13, 110, 162);
+    }
   }
 
   &__popover{

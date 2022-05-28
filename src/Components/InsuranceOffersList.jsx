@@ -8,6 +8,8 @@ import {
   apiTwoStatus,
   fetchApiOneInsuranceOffers,
   fetchApiTwoInsuranceOffers,
+  fetchIndividualOffersCount,
+  invidiualOffersCountStatus
 } from "../features/insurance/insuranceSlice";
 
 // component imports
@@ -15,10 +17,13 @@ import InsuranceOfferCard from "./InsuranceOfferCard";
 
 const InsuranceOffersList = () => {
   const dispatch = useDispatch();
+
+  //Selectors
   const apiOneStatusValue = useSelector(apiOneStatus);
   const apiTwoStatusValue = useSelector(apiTwoStatus);
   const apiOneData = useSelector(apiOneInsuranceOffers);
   const apiTwoData = useSelector(apiTwoInsuranceOffers);
+  const individualOffersCountStatusValue = useSelector(invidiualOffersCountStatus)
 
   // fetch insurance offers for case 1 and case 2
   useEffect(() => {
@@ -28,6 +33,10 @@ const InsuranceOffersList = () => {
 
     if (apiTwoStatusValue === "idle") {
       dispatch(fetchApiTwoInsuranceOffers("/case2"));
+    }
+
+    if(individualOffersCountStatusValue === "idle"){
+      dispatch(fetchIndividualOffersCount("get_offer_count"))
     }
   }, [dispatch, apiOneStatusValue, apiTwoStatusValue]);
 

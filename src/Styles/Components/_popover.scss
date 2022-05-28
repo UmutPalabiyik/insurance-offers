@@ -15,7 +15,7 @@
   margin-left: 0.25rem;
   cursor: pointer;
 
-  &:hover &__content {
+  &__svg:hover + &__content {
     opacity: 1;
     display: flex;
   }
@@ -32,7 +32,6 @@
     right: -50%;
     border-radius: 0.25rem;
     transition: all 0.25s ease-in-out;
-    z-index: 999;
 
     &::before {
       content: "";
