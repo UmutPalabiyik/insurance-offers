@@ -5,8 +5,10 @@
 // Abstracts
 @import "Abstracts/mixins";
 @import "Config/variables";
+@import "Config/fonts";
 
 //Components
 @import "Components/insuranceOfferCard";
 @import "Components/insuranceOffersList";
 @import "Components/basicSpinner";
+@import "Components/popover";

@@ -1,3 +1,5 @@
+import Popover from "./Popover";
+
 const InsuranceOfferCard = ({ offerData }) => {
   const {
     Cash,
@@ -20,7 +22,7 @@ const InsuranceOfferCard = ({ offerData }) => {
             <div className="offer-card__description">{ProductDesc}</div>
             <div className="offer-card__company-name">
                 {FirmName}
-                {popoverContent && <span className="offer-card__popover">?</span>}
+                {popoverContent && <Popover popoverContent={popoverContent} />}
                 </div>
           </div>
         </div>
