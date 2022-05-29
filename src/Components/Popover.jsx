@@ -2,7 +2,6 @@ import { BsQuestion } from "react-icons/bs";
 
 const Popover = ({ popoverContent }) => {
   const { Title, Description } = popoverContent[0];
-  console.log(popoverContent[0])
 
   return (
     <div className="popover">

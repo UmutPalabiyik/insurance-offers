@@ -1,18 +1,17 @@
 import Popover from "./Popover";
 
-const InsuranceOfferCard = ({ offerData }) => {
+const InsuranceOfferCard = ({ offerData, individualOffer }) => {
   const {
     Cash,
     FirmName,
     ImagePath,
     ProductDesc,
     QuotaInfo,
-    SaleClosed,
     popoverContent,
   } = offerData;
   
   return (
-    <div className="offer-card">
+    <div className={`offer-card  ${individualOffer ? 'offer-card--individual' : ''}`}>
       <div className="offer-card__container">
         <div className="offer-card__company-info">
           <div className="offer-card__image">

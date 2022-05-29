@@ -1,20 +1,47 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import BasicSpinner from "./BasicSpinner";
 import { MdDoubleArrow } from "react-icons/md";
+import axios from "../axios";
+import InsuranceOfferCard from "./InsuranceOfferCard";
 
 const IndividualOffers = () => {
+  const [individualOffersList, setIndividualOffersList] = useState([]);
+  const [individiualLoader, setIndividiualLoader] = useState(true);
   const { individualOffersCount, individualOffersCountStatus } = useSelector(
     (state) => state.insurance
   );
   const [showOffers, setShowOffers] = useState(false);
   const handleShowOffers = () => {
     setShowOffers(!showOffers);
-    console.log("al sana offers ==>", showOffers);
   };
 
+  useEffect(() => {
+    const fetchIndividualOffers = async () => {
+      if (individualOffersCountStatus === "succeeded") {
+        setIndividiualLoader(true);
+        console.log("individual loader", individiualLoader)
+        for (let i = 0; i < individualOffersCount; i++) {
+          const response = await axios.get("/case3");
+          setIndividualOffersList((previuesValue) => [
+            ...previuesValue,
+            response.data,
+          ]);
+        }
+        setIndividiualLoader(false);
+      }
+    };
+
+    fetchIndividualOffers();
+  }, [individualOffersCountStatus, individualOffersCount]);
+
+
   return (
-    <div className={`individual-offers ${showOffers ? "individual-offers__show" : "" }`}>
+    <div
+      className={`individual-offers ${
+        showOffers ? "individual-offers__show" : ""
+      }`}
+    >
       {individualOffersCountStatus === "loading" ? (
         <BasicSpinner />
       ) : (
@@ -26,7 +53,16 @@ const IndividualOffers = () => {
         </div>
       )}
       <div className="individual-offers__list">
-
+        <div className="individual-offers__list-container">
+          {individualOffersList.map((offerData, key) => {
+            return <InsuranceOfferCard individualOffer={true} offerData={offerData} key={key} />;
+          })}
+          {individiualLoader && (
+            <div className="individual-offers__spinner">
+              <BasicSpinner />
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

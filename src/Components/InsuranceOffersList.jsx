@@ -9,7 +9,7 @@ import {
   fetchApiOneInsuranceOffers,
   fetchApiTwoInsuranceOffers,
   fetchIndividualOffersCount,
-  invidiualOffersCountStatus
+  individualOffersCountStatus
 } from "../features/insurance/insuranceSlice";
 
 // component imports
@@ -23,7 +23,7 @@ const InsuranceOffersList = () => {
   const apiTwoStatusValue = useSelector(apiTwoStatus);
   const apiOneData = useSelector(apiOneInsuranceOffers);
   const apiTwoData = useSelector(apiTwoInsuranceOffers);
-  const individualOffersCountStatusValue = useSelector(invidiualOffersCountStatus)
+  const individualOffersCountStatusValue = useSelector(individualOffersCountStatus)
 
   // fetch insurance offers for case 1 and case 2
   useEffect(() => {
@@ -38,7 +38,8 @@ const InsuranceOffersList = () => {
     if(individualOffersCountStatusValue === "idle"){
       dispatch(fetchIndividualOffersCount("get_offer_count"))
     }
-  }, [dispatch, apiOneStatusValue, apiTwoStatusValue]);
+
+  }, [dispatch, apiOneStatusValue, apiTwoStatusValue, individualOffersCountStatusValue]);
 
   return (
     <div className="offers">

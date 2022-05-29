@@ -32,6 +32,7 @@
     right: -50%;
     border-radius: 0.25rem;
     transition: all 0.25s ease-in-out;
+    z-index: 888;
 
     &::before {
       content: "";

@@ -1,12 +1,15 @@
 .individual-offers {
+      max-width: 968px;
+    transform: translateX(-50%);
   position: fixed;
   width: 100%;
-  left: 0;
+  left: 50%;
+  right: 0;
   bottom: 0;
   color: #ffff;
   cursor: pointer;
   z-index: 999;
-
+  
   &__title {
     display: flex;
     justify-content: center;
@@ -16,6 +19,9 @@
     padding: 0.5rem 0.5rem;
     background: #018559;
     transition: all 0.25s ease-in;
+    -webkit-box-shadow: 0px -2px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px -2px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px -2px 5px 0px rgba(0,0,0,0.75);
 
     &:hover {
       background: #016745;
@@ -31,7 +37,24 @@
   &__show &__title-icon {
     transform: rotate(90deg);
   }
-  &__list {
+
+  &__show &__list{
+    background: #ffff;
+  }
+
+  &__show &__list-container{
+    max-height: 400px !important;
+    overflow-y: scroll;
+  }
+
+  &__list-container {
+    transition: max-height .25s ease-in-out; 
     max-height: 0 !important;
+  }
+
+  &__spinner{
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
