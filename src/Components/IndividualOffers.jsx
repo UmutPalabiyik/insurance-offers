@@ -8,10 +8,10 @@ import InsuranceOfferCard from "./InsuranceOfferCard";
 const IndividualOffers = () => {
   const [individualOffersList, setIndividualOffersList] = useState([]);
   const [individiualLoader, setIndividiualLoader] = useState(true);
+  const [showOffers, setShowOffers] = useState(false);
   const { individualOffersCount, individualOffersCountStatus } = useSelector(
     (state) => state.insurance
   );
-  const [showOffers, setShowOffers] = useState(false);
   const handleShowOffers = () => {
     setShowOffers(!showOffers);
   };
@@ -35,6 +35,8 @@ const IndividualOffers = () => {
     fetchIndividualOffers();
   }, [individualOffersCountStatus, individualOffersCount]);
 
+  const sortedIndividualOffersList = individualOffersList.sort((a, b) => a.Cash - b.Cash);
+  console.log("sortedIndividualOffersList", sortedIndividualOffersList);
 
   return (
     <div
@@ -43,7 +45,7 @@ const IndividualOffers = () => {
       }`}
     >
       {individualOffersCountStatus === "loading" ? (
-        <BasicSpinner />
+        <div className="individual-offers__spinner"><BasicSpinner /></div>
       ) : (
         <div className="individual-offers__title" onClick={handleShowOffers}>
           <span className="individual-offers__title-text">
@@ -54,7 +56,7 @@ const IndividualOffers = () => {
       )}
       <div className="individual-offers__list">
         <div className="individual-offers__list-container">
-          {individualOffersList.map((offerData, key) => {
+          {sortedIndividualOffersList.map((offerData, key) => {
             return <InsuranceOfferCard individualOffer={true} offerData={offerData} key={key} />;
           })}
           {individiualLoader && (
